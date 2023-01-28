@@ -2,7 +2,7 @@ import requests
 import folium
 
 
-def get_info_ip(ip='185.87.48.157'):
+def get_info_ip(ip):
     try:
         req = requests.get(url=f'http://ip-api.com/json/{ip}').json()
 
