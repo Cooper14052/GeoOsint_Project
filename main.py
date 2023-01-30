@@ -1,11 +1,11 @@
-import win10toast###
-from win10toast import ToastNotifier###
 import requests
 import folium
-from tkinter import *###
+from tkinter import *
 import webbrowser as wb
 
-def get_info_ip(ip):
+
+def get():
+    ip = edit.get()
     try:
         req = requests.get(url=f'http://ip-api.com/json/{ip}').json()
         data = {
@@ -33,28 +33,20 @@ def get_info_ip(ip):
     except:
         print()
 
-def main():
-    ip = (input('Введите ip-адрес:'))
+window = Tk()
+#window.iconbitmap('favpng_vector-graphics-royalty-free-stock-illustration-knight.ico')
+window.title('Knight')
+window.geometry('300x250')
+window.wm_attributes('-alpha', 0.8)
 
-    get_info_ip(ip=ip)
+title = Label(window, text='Введите ip')
+title.pack()
 
-def message():
-    message = win10toast.ToastNotifier()
-    message.show_toast(title="OSINT", msg="Scan finished!", duration=10)
+edit = Entry(window)
+edit.pack()
 
-def window():
-    window = Tk()
-    window.title('Инфо')
-    window.geometry('300x250')
-    window.wm_attributes('-alpha', 0.7)
-    title = Label(window,text='Введите ip')
-    title.pack()
-    window.mainloop()
+but = Button(text='Принять', command=get)
+but.pack()
 
-if __name__ == '__main__':
-    try:
-        while True:
-            main()
-            #message()
-    except:
-        print()
+window.mainloop()
+
