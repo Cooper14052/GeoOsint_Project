@@ -9,8 +9,10 @@ import time
 name_img = pyfiglet.figlet_format("Firebrand")
 print(name_img)
 
+
 def open_info():
     os.startfile('info.txt')
+
 
 def get():
     ip = edit.get()
@@ -25,6 +27,7 @@ def get():
             '[Широта]': req.get('lat'),
             '[Долгота]': req.get('lon'),
         }
+
         for k, v in data.items():
             print(f'{k}: {v}')
         print(f'--------------------\n')
@@ -34,7 +37,7 @@ def get():
             f.write(f'--------------------\n')
         area = folium.Map(location=[req.get('lat'), req.get('lon')])
         area.save(f'{req.get("query")}_{req.get("city")}.html')
-        
+
         ip = req.get("query")
         city = req.get("city")
         wb.open(f'file:///C:/Users/Cooper/PycharmProjects/OSINT/{ip}_{city}.html')
@@ -42,6 +45,7 @@ def get():
         os.remove(f'{req.get("query")}_{req.get("city")}.html')
     except:
         print()
+
 
 window = Tk()
 window.iconbitmap('icon.ico')
@@ -52,7 +56,7 @@ window.wm_attributes('-alpha', 0.8)
 title = Label(window, text='Введите IPv4')
 title.pack()
 
-edit = Entry(window,width=15)
+edit = Entry(window, width=15)
 edit.pack()
 
 but = Button(text='Принять', command=get)
